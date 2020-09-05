@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChangeLogs FiveOS</title>
+<meta name="description" content="Registro de cambios en las versiones FiveOS">
+<link rel="icon shortcut" type="image/png" href="i/p/Logo.png">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<style>
+@import url(http://fonts.googleapis.com/css?family=PT+Sans&subset=cyrillic-ext,latin);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+html,body{background-color: #fddd34;background-image: url(i/back.png); margin:0; padding:0; color: #360505; font-family: 'Ubuntu Condensed', sans-serif; overflow: auto;}
+.rotation{-webkit-animation-duration:10s;-webkit-animation-iteration-count:infinite;-webkit-animation-timing-function:linear;-moz-animation-duration:10s;-moz-animation-iteration-count:infinite;-moz-animation-timing-function:linear;-o-animation-duration:10s;-o-animation-iteration-count:infinite;-o-animation-timing-function:linear;animation-duration:10s;animation-iteration-count:infinite;animation-timing-function:linear}
+.rotation.forward{-webkit-animation-name:forward_rotation;-moz-animation-name:forward_rotation;-o-animation-name:forward_rotation;animation-name:forward_rotation}
+.rotation.backward{-webkit-animation-name:backward_rotation;-moz-animation-name:backward_rotation;-o-animation-name:backward_rotation;animation-name:backward_rotation}
+@-webkit-keyframes forward_rotation{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg);}}@-moz-keyframes forward_rotation{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg);}}@-o-keyframes forward_rotation{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes forward_rotation{0%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg);}}
+@-webkit-keyframes backward_rotation{0%{-webkit-transform:rotate(342deg);-moz-transform:rotate(342deg);-o-transform:rotate(342deg);transform:rotate(342deg);}100%{-webkit-transform:rotate(-18deg);-moz-transform:rotate(-18deg);-o-transform:rotate(-18deg);transform:rotate(-18deg);}}@-moz-keyframes backward_rotation{0%{-webkit-transform:rotate(342deg);-moz-transform:rotate(342deg);-o-transform:rotate(342deg);transform:rotate(342deg);}100%{-webkit-transform:rotate(-18deg);-moz-transform:rotate(-18deg);-o-transform:rotate(-18deg);transform:rotate(-18deg);}}@-o-keyframes backward_rotation{0%{-webkit-transform:rotate(342deg);-moz-transform:rotate(342deg);-o-transform:rotate(342deg);transform:rotate(342deg);}100%{-webkit-transform:rotate(-18deg);-moz-transform:rotate(-18deg);-o-transform:rotate(-18deg);transform:rotate(-18deg);}}@keyframes backward_rotation{0%{-webkit-transform:rotate(342deg);-moz-transform:rotate(342deg);-o-transform:rotate(342deg);transform:rotate(342deg);}100%{-webkit-transform:rotate(-18deg);-moz-transform:rotate(-18deg);-o-transform:rotate(-18deg);transform:rotate(-18deg);}}
+.icon_gear{background:url(i/GearFiveOSv2.1.png) no-repeat center center;background-size: 100%}
+.icon_gear.large{width: 192px; height: 192px}
+.icon_gear.medium{width: 144px; height: 144px}
+.icon_gear.small{width: 96px; height: 96px}
+a{font-family: 'Ubuntu Condensed', sans-serif;color: orange; text-decoration: none}
+a:hover{color: darkorange; text-decoration: underline}
+.wrap .texts a:after{font-family: FontAwesome;content:"\f078";margin-right: 10px;}
+.wrap{position:absolute;width:800px;height:300px;left:50%;top:50%;margin-left:-400px;margin-top:-150px}
+.wrap .texts{padding-right:330px;font-size:120%;color:white;}
+.wrap .texts h1,h2{font-family: 'Orbitron', sans-serif;color:yellow;}
+.wrap .texts p{font-size:90%;letter-spacing:-1px}
+.listr p:before{font-family: FontAwesome;content:"\f00c";margin-right: 5px;}
+.listr p:hover{color:lime;}
+.listr p{font-family: 'Ubuntu Condensed', sans-serif;list-style-type: none;margin-bottom:5px;margin-top:5px;}
+.gear{position:absolute;top:0;right:0}
+#gear1{top:100px}
+#gear2{right:140px;top:10px}
+#gear3{right:230px;top:133px}
+.thum{width:20px;height:auto;margin-right: 3px;vertical-align: middle;}
+#eslang,#enlang,#frlang,#delang{display:none;}
+@media screen and (max-width:820px){
+.wrap{position:relative; width:auto; height:auto; margin:0; padding: 0 30px; left: 0}
+.wrap .texts{padding-right: 0}
+.gears{display:none}
+}
+</style>
+<script>
+$(function(){
+
+$( "#clickes" ).click(function() {
+  $( "#eslang" ).slideToggle( "slow", function() {
+    $( "#enlang" ).css("display", "none");
+    $( "#frlang" ).css("display", "none");
+    $( "#delang" ).css("display", "none");
+  });
+});
+$( "#clicken" ).click(function() {
+  $( "#enlang" ).slideToggle( "slow", function() {
+    $( "#eslang" ).css("display", "none");
+    $( "#frlang" ).css("display", "none");
+    $( "#delang" ).css("display", "none");
+  });
+});
+$( "#clickfr" ).click(function() {
+  $( "#frlang" ).slideToggle( "slow", function() {
+    $( "#eslang" ).css("display", "none");
+    $( "#enlang" ).css("display", "none");
+    $( "#delang" ).css("display", "none");
+  });
+});
+$( "#clickde" ).click(function() {
+  $( "#delang" ).slideToggle( "slow", function() {
+    $( "#eslang" ).css("display", "none");
+    $( "#enlang" ).css("display", "none");
+    $( "#frlang" ).css("display", "none");
+  });
+});
+
+});
+</script>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="texts">
+    <h1>FiveOS</h1>
+    <h2 style="font-size:85%;">Registro de cambios por version</h2>
+    <p>Elige tu idioma / Choose your language</p>
+    <p>
+    <a id="clickes" href="#chooseES"><img class="thum" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png">ES </a>
+    <a id="clicken" href="#chooseEN"><img class="thum" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/125px-Flag_of_the_United_Kingdom.svg.png">EN </a>
+    <a id="clickfr" href="#chooseFR"><img class="thum" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/125px-Flag_of_France.svg.png">FR </a>
+    <a id="clickde" href="#chooseDE"><img class="thum" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png">DE </a></p>
+  </div>
+  <div class="gears">
+    <div id="gear1" class="gear icon_gear large rotation forward"></div>
+    <div id="gear2" class="gear icon_gear medium rotation backward"></div>
+    <div id="gear3" class="gear icon_gear small rotation forward"></div>
+  </div>
+  <div style="clear: both;"></div>
+
+<div id="eslang">
+
+<!-- 
+- Cambiado en 2.6
+== Nueva configuracion de pantalla (100%)
+=== Con previsualizacion
+=== Ajuste de imagen
+=== Su diseño se rige por las variables locales de diseño
+
+== Eliminado modificar escritorio desde el menu contextual (100%)
+== Diseño del menu contextual se ha cambiado (100%)
+==  Añadir icono de compra (0%)
+== Crear carpetas (0%)
+== Crear paginas (0%)
+== Guardar paginas en carpetas (0%)
+== Optimizar transiciones del boton de navegacion y modificarlo (0%)
+
+
+- Notepad (0%)
+== Guardar nota
+== Abrir nota
+== Eliminar nota
+-->
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.4 (Actual)</h1>
+    <div class="listr">
+      <p>Añadida la fecha y hora en el menu</p>
+      <p>Añadido iconos de notificacion</p>
+      <p>Fecha y iconos de notificacion personalizables</p>
+      <p>Optimizacion importante del codigo</p>
+      <p>Nuevo logo del sistema</p>
+      <p>Nuevo boton de menu con animaciones</p>
+      <p>3 nuevos diseños de barra de menu (Oficial, Blanco y Blanco con transparencia)</p>
+      <p>Un nuevo diseño de separador en menu</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.2</h1>
+    <div class="listr">
+      <p>Multiples diseños en la barra de menu</p>
+      <p>Diseño del contextual no modificable</p>
+      <p>Posibilidad de cambiar el diseño de la barra de menu</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2</h1>
+    <div class="listr">
+      <p>Añadido menu de color para personalizar la interfaz</p>
+      <p>Diseño del menu contextual modificable</p>
+      <p>Corregido errores de interaccion</p>
+      <p>Favicon creado</p>
+      <p>Botones de inicio en el menu diseñados</p>
+      <p>Separadores de barra inicios diseñados</p>
+      <p>Multiples errores solucionados</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.8</h1>
+    <div class="listr">
+      <p>Nuevo diseño de barra de menu (WVersion)</p>
+      <p>Diseño del menu contextual modificado</p>
+      <p>Diseño de animaciones modificado levemente</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7.1</h1>
+    <div class="listr">
+      <p>Corregido algunos errores de variables locales</p>
+      <p>Optimizacion de scripts</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7</h1>
+    <div class="listr">
+      <p>Añadido menu contextual con la tecnologia de Bootstrap</p>
+      <p>Posibilidad de cambiar la imagen de fondo</p>
+      <p>Posibilidad de cambiar el tipo de fondo (Mosaico y ajustado)</p>
+      <p>Estos cambios quedan guardados en variables locales</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.2</h1>
+    <div class="listr">
+      <p>Solucionado errores en el area de trabajo</p>
+      <p>Eliminacion de barra de menu en dispositivos moviles y pantallas pequeñas</p>
+      <p>Ajustes del fondo en dispositivos moviles y pantallas pequeñas</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1</h1>
+    <div class="listr">
+      <p>Iconos arrastables en zona de trabajo</p>
+      <p>Diseños de iconos</p>
+      <p>Boceto de la barra de menu</p>
+      <p>Efectos de animacion en iconos</p>
+      <p>Evitado el superposicionamiento de objetos</p>
+      <p>Añadido Scripts para funcionamiento temporal en dispositivos moviles y de pantalla pequeña</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="enlang">
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.4 (Actual)</h1>
+    <div class="listr">
+      <p>Add the date and time on the menu</p>
+      <p>Add notification icons</p>
+      <p>Date and notification icons are customizable</p>
+      <p>Important code optimization</p>
+      <p>New logo system</p>
+      <p>New button menu with animations</p>
+      <p>3 new designs of menu bar (Official, White and White with transparency)</p>
+      <p>A new menu separator design</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.2</h1>
+    <div class="listr">
+      <p>Multiples designs for the menubar</p>
+      <p>Design contextual menu, unmodifiable</p>
+      <p>Possibility to change the layout of the menu bar</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2</h1>
+    <div class="listr">
+      <p>Add the color menu to customize the interface</p>
+      <p>Contextual menu design modifiable</p>
+      <p>Fixed errors interaction</p>
+      <p>Favicon create</p>
+      <p>Start buttons on the menu designed</p>
+      <p>Separators designed for the menubar</p>
+      <p>Multiple bug fixes</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.8</h1>
+    <div class="listr">
+      <p>Redesigned menu bar (WVersion)</p>
+      <p>Contextual menu design has been modified</p>
+      <p>Animation design slightly modified</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7.1</h1>
+    <div class="listr">
+      <p>Correct some errors of local variables</p>
+      <p>Optimization scripts</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7</h1>
+    <div class="listr">
+      <p>Add contextual menu with technology Bootstrap</p>
+      <p>Possibility to change the background image</p>
+      <p>Possibility to change the type of background (Mosaic and adjusted)</p>
+      <p>These changes are stored in local variables</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.2</h1>
+    <div class="listr">
+      <p>Fixed errors in the work area</p>
+      <p>Removing menu bar on mobile devices and small screens</p>
+      <p>Background settings on mobile devices and small screens</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1</h1>
+    <div class="listr">
+      <p>Draggable icons in the work area</p>
+      <p>Icon designs</p>
+      <p>Sketch of the menu bar</p>
+      <p>Effects animation icons</p>
+      <p>Prevented the super positioning of objects</p>
+      <p>Add Scripts for temporary operation in mobile devices and small screen</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="frlang">
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.4 (Actuel)</h1>
+    <div class="listr">
+      <p>Date et heure ajoutés dans le menu</p>
+      <p>Elle a ajouté une icône de notification</p>
+      <p>Date et les icônes de notification sont personnalisables</p>
+      <p>Optimisation de code importante</p>
+      <p>Nouveau système de logo</p>
+      <p>Nouvelles animations bouton de menu</p>
+      <p>3 nouveaux modèles de la barre de menu (Officiel, Blanc et Blanc avec la transparence)</p>
+      <p>Une nouvelle conception de séparateur de menu</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.2</h1>
+    <div class="listr">
+      <p>Multiples designs pour la barre de menu</p>
+      <p>Concevez menu contextuel, unmodifiable</p>
+      <p>Possibilité de changer la mise en page de la barre de menu</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2</h1>
+    <div class="listr">
+      <p>Ajouter le menu de couleurs pour personnaliser l'interface</p>
+      <p>Conception du menu contextuel modifiable</p>
+      <p>Interaction erreurs fixe</p>
+      <p>Favicon créer</p>
+      <p>Démarrer les boutons sur la conception de menu</p>
+      <p>Conception de séparateurs pour la barre de menu</p>
+      <p>Plusieurs correctifs de bugs</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.8</h1>
+    <div class="listr">
+      <p>Barre de menu Redessiné (WVersion)</p>
+      <p>La conception de menu contextuel a été modifié</p>
+      <p>La conception d'animation légèrement modifié</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7.1</h1>
+    <div class="listr">
+      <p>Corriger certaines erreurs de variables locales</p>
+      <p>Scripts d'optimisation</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7</h1>
+    <div class="listr">
+      <p>Ajout d'un menu contextuel avec la technologie Bootstrap</p>
+      <p>Possibilité de changer l'image d'arrière-plan</p>
+      <p>Possibilité de changer le type de fond (Mosaïque et ajusté)</p>
+      <p>Ces modifications sont stockées dans des variables locales</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.2</h1>
+    <div class="listr">
+      <p>Correction d'erreurs dans la zone de travail</p>
+      <p>Retrait barre de menu sur les appareils mobiles et les petits écrans</p>
+      <p>Paramètres de base sur les appareils mobiles et les petits écrans</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1</h1>
+    <div class="listr">
+      <p>Icônes déplaçables dans la zone de travail</p>
+      <p>Conceptions d'icônes</p>
+      <p>Croquis de la barre de menu</p>
+      <p>Icônes effets animés</p>
+      <p>Empêché le super positionnement des objets</p>
+      <p>Ajouter des scripts pour un fonctionnement temporaire dans les appareils mobiles et petit écran</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="delang">
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.4 (Strom)</h1>
+    <div class="listr">
+      <p>Fügen Sie das Datum und die Uhrzeit auf dem Menü</p>
+      <p>Sie wurden Benachrichtigungssymbole hinzugefügt</p>
+      <p>Datum und Benachrichtigungssymbole können angepasst werden</p>
+      <p>wichtige Code-Optimierung</p>
+      <p>Neues Logo-System</p>
+      <p>Neue Menütaste Animationen</p>
+      <p>3 neue Designs Menüleiste (Official, Weiß und Weiß transparent)</p>
+      <p>Ein neues Menü Separator Design</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2.2</h1>
+    <div class="listr">
+      <p>Multiples-Designs für die Menüleiste</p>
+      <p>Gestalten Sie das Kontextmenü , unveränderbare</p>
+      <p>Möglichkeit, das Layout der Menüleiste ändern</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V2</h1>
+    <div class="listr">
+      <p>Fügen Sie das Farbmenü um die Oberfläche anzupassen</p>
+      <p>Kontextmenü Design modifizierbar</p>
+      <p>Fehler behoben Interaktion</p>
+      <p>Favicon erstellen</p>
+      <p>Starten Sie Tasten auf dem Menü-Design</p>
+      <p>Separatoren-Design für die Menüleiste</p>
+      <p>Mehrere Fehlerbehebungen</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.8</h1>
+    <div class="listr">
+      <p>Neu gestaltete Menüleiste (WVersion)</p>
+      <p>Kontextmenü -Design wurde geändert</p>
+      <p>Animation Design leicht modifiziert</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7.1</h1>
+    <div class="listr">
+      <p>Korrigieren Sie einige Fehler von lokalen Variablen</p>
+      <p>Optimierung Skripte</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.7</h1>
+    <div class="listr">
+      <p>In Kontextmenü mit der Technologie Bootstrap</p>
+      <p>Möglichkeit, das Hintergrundbild zu ändern</p>
+      <p>Möglichkeit, die Art von Hintergrund zu ändern (Mosaic und angepasst)</p>
+      <p>Diese Änderungen werden in lokalen Variablen gespeichert</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1.2</h1>
+    <div class="listr">
+      <p>Fest Fehler im Arbeitsbereich</p>
+      <p>Das Entfernen der Menüleiste auf mobilen Geräten und kleinen Bildschirmen</p>
+      <p>Hintergrund Einstellungen auf mobilen Geräten und kleinen Bildschirmen</p>
+    </div>
+  </div>
+
+  <div class="texts">
+    <h1>FiveOS Innovation V1</h1>
+    <div class="listr">
+      <p>Ziehbare Symbole im Arbeitsbereich</p>
+      <p>Icon-Designs</p>
+      <p>Skizze der Menüleiste</p>
+      <p>Effects animierte Icons</p>
+      <p>Verhinderte, dass die Super-Positionierung von Objekten</p>
+      <p>In Scripts für vorübergehenden Betrieb in mobilen Geräten und kleinen Bildschirm</p>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>

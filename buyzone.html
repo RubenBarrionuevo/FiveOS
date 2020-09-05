@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Compra tu icono en FiveOS - Buy your icon in FiveOS">
+<link rel="icon shortcut" type="image/png" href="i/p/Logo.png">
+<title>Buy icon - FiveOS</title>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js"></script>
+<script>
+// Evitar comprobaciones de seguridad
+    $(document).bind('mobileinit',function(){
+        $.mobile.hidePageLoadingMsg();
+    });
+</script> 
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<style>
+/* Fonts:
+1º_ font-family: 'Orbitron', sans-serif;
+2º_ font-family: 'Ubuntu Condensed', sans-serif; */
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+html,body{width:100%;height:100%;padding: 0;margin:0;}
+body{background-image:url(i/back.png)}
+#wrappermain{height:100%;overflow:hidden;}
+#chooseleng{height:auto;background-image:url(i/back4.png);margin:0px 50px 0px 50px;text-align:center;padding:15px 0px 15px 0px;margin-top:40vh;border-radius:15px 5px 15px 5px;}
+.divlengchoose{display:inline;margin-left:25px;}.lengchoose{width:125px;height: 70px;cursor:pointer;}
+
+.lengchoose:hover {
+    -webkit-animation: swing 1s;
+    animation: swing 1s;
+}
+#formtolook{display:none;margin:25px 55px 25px 55px;background:white;height: auto;border-radius:15px 5px 15px 5px;
+	padding:10px;}
+#wrapper_sand_box{height: 100%;width:100%;background-image:url(i/back4.png);overflow:hidden;display: none;}
+#thum_spanish,#thum_french,#thum_german{margin-top:5px;}
+#thum_english_img,#thum_spanish_img,#thum_french_img,#thum_german_img{width:60px;height: auto;cursor:pointer;
+	-webkit-transition: border-radius 1s;
+	transition: border-radius 1s;}
+#thum_english_img:hover,#thum_spanish_img:hover,#thum_french_img:hover,#thum_german_img:hover{
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;	
+    border-radius:7px 2.5px 7px 2.5px;
+}
+#header{position: absolute;top:0;left:0;background:orange;height:80px;width:100%;display:none;background-image: url(i/back3.png);line-height:80px;vertical-align: middle;text-align:center;}
+#gotobuy{font-family: 'Ubuntu Condensed', sans-serif;font-size:18px;color:white;margin-right:7.5px;}
+@media screen and (max-width:800px){
+body{background-image: url(i/back3.png);}
+#wrappermain{overflow-y: auto;}
+#chooseleng{margin:10px 20px 10px 20px;padding:20px 10px 20px 10px;}
+.divlengchoose{display: block;margin-top:5px;}
+#formtolook{margin:25px 10px 25px 10px;}
+
+}
+@media screen and (max-height:700px){
+#wrappermain{overflow-y: auto;}
+#formtolook{margin:25px 10px 25px 10px;}
+}
+</style>
+<script>
+$(function(){
+$( "#itemexample" ).draggable({containment: "parent"});
+function idiomaelegido(){
+	$('#chooseleng').css({opacity: 1});
+	$('#chooseleng').animate({opacity: 0}, 700, function(){
+		$('#chooseleng').css({display: 'none'});
+		$('#formtolook').css({opacity: 0});
+		$('#formtolook').css({display: 'block'});
+		$('#formtolook').animate({opacity: 1}, 700);
+	});
+	}
+//Inicializacion de variables
+var form_all_god = "";var form_name_failx = "";var form_img_1_failx = "";var form_img_2_failx = "";var form_brandsite_failx = "";var testsite = "";var datostotales = "";var msgtobuy = "";var buttontobuy = ""
+	//Aqui configuracion de idiomas
+	function idioma_ingles(){
+		$('.form_welcome_msg').html('Welcome to FiveOS, fill all correctly to see how would be your brand or web advertised on our website!')
+		$('.form_welcome_info').html("This data just is used to see how it will display in our web. The data doesn't storage anywhere, it just runs in your device.")
+		$('.form_name').html('Brand name or web:')
+		$('.form_img').html('Link of brand logo or web:')
+		$('.form_site').html('Website link:')
+		$('.form_button').html('Look!')
+		$('#gotobuy').html('Like how it is, because you expect to buy and your icon?');
+		$('button#buttontobuy').text('Purchase 5€/Month');
+		form_all_god = "All correct, loading ..."
+		datostotales = "Fill all data"
+		form_name_failx = "The name has more than 20 characters"
+		form_img_1_failx = "The image link fails. The link must start with the protocol http or www"
+		form_img_2_failx = "The image format is not supported, we admit .icon; .png; .jpg; .svg and .jpeg"
+		form_brandsite_failx = "The website link fails. The link must start with the protocol http or www"
+	}
+	function idioma_spanish(){
+		$('.form_welcome_msg').html('Bienvenidos a FiveOS, rellena correctamente las siguientes celdas para ver como quedaria tu marca o web anunciada en nuestro sitio web')
+		$('.form_welcome_info').html('Estos datos solo son usados para que veas una demostracion, es decir no se guardan en ningun servidor u otro lugar, solo se ejecutan en tu dispositivo')
+		$('.form_name').html('Nombre de tu marca o web:')
+		$('.form_img').html('Enlace del logo de tu marca o web')
+		$('.form_site').html('Sitio web')
+		$('.form_button').html('Mira!')
+		$('#gotobuy').html('¿Te gusta como queda, a que esperas para comprar ya tu icono?');
+		$('button#buttontobuy').text('Realizar compra 5€/Mes');		
+		form_all_god = "Todos los datos son correctos, cargando..."
+		datostotales = "Rellena todos los datos"
+		form_name_failx = "El nombre de la marca o del sitio web no debe de tener mas de 20 caracteres"
+		form_img_1_failx = "El enlace del logo falla, fijate que el enlace contenga el http:// o www."
+		form_img_2_failx = "Formato de imagen no soportado, admitimos los formatos .icon, .png, .jpg, .svg y .jpeg"
+		form_brandsite_failx = "El enlace al sitio web falla, fijate que el enlace contenga el http:// o www."
+	}
+	function idioma_frances(){
+		$('.form_welcome_msg').html('Bienvenue à FiveOS, remplir correctement les informations suivantes pour une démonstration');
+		$('.form_welcome_info').html('Ceux-ci ne sont pas stockés dans un lieu, les données ne seront utilisées que pour la démonstration');
+		$('.form_name').html('Nom de votre marque ou site web:');
+		$('.form_img').html('URL de votre logo:');
+		$('.form_site').html('Url de votre site web:');
+		$('.form_button').html('Regardez!');
+		$('#gotobuy').html("Comme le résultat?, Vous attendez d'acheter un espace sur notre website?");
+		$('button#buttontobuy').text('Acheter 5€/Mois');	
+		form_all_god = "Toutes les données sont correctes, Chargement ..."
+		datostotales = "Remplissez toutes les données"
+		form_name_failx = "Le nom de marque ou le site Web ne doivent pas avoir plus de 20 caractères"
+		form_img_1_failx = "Le lien de logo échoue, le lien fijate qui contient le http: // ou www."
+		form_img_2_failx = "Format d'image non pris en charge, nous admettons les formats .icon, .png, .jpg, .jpeg et .svg"
+		form_brandsite_failx = "Le lien vers le site Web échoue et notez que le lien contient http: // ou www."
+	}
+	function idioma_aleman(){
+		$('.form_welcome_msg').html('Willkommen bei FiveOS, richtig in den folgenden Daten für die Demonstration füllen');
+		$('.form_welcome_info').html('Diese Daten werden nur für die Demonstration verwendet werden, werden sie nicht an jedem Ort gespeichert werden.');
+		$('.form_name').html('Markenname oder Website:');
+		$('.form_img').html('Verknüpfen Sie das Markenlogo oder Web:');
+		$('.form_site').html('Link zur Website:');
+		$('.form_button').html('Sehen!');
+		$('#gotobuy').html('Was denken Sie?, Worauf warten Sie noch, es zu kaufen?');
+		$('button#buttontobuy').text('Kaufen 5€/Monat');	
+		form_all_god = "Alle Daten sind korrekt, lädt noch ..."
+		datostotales = "Füllen Sie alle Daten"
+		form_name_failx = "Der Name muss weniger als 20 Zeichen"
+		form_img_1_failx = "Die Verknüpfung des Bildes ist nicht korrekt"
+		form_img_2_failx = "Bildformat nicht unterstützt"
+		form_brandsite_failx = "Die Website-Link ist nicht korrekt"
+	}
+	// Se elige idioma
+	$('#english').on("click", function(){idiomaelegido();idioma_ingles();});
+	$('#spanish').on("click", function(){idiomaelegido();idioma_spanish();});
+	$('#french').on("click", function(){idiomaelegido();idioma_frances();});
+	$('#german').on("click", function(){idiomaelegido();idioma_aleman();});
+
+	$('#thum_english').on("click", function(){idioma_ingles()});
+	$('#thum_spanish').on("click", function(){idioma_spanish()});
+	$('#thum_french').on("click", function(){idioma_frances()});
+	$('#thum_german').on("click", function(){idioma_aleman()});
+	//Comprobacion de informacion
+	$('#test').on("click", function(){
+		var estadoweb = "Fail";var estadoimg = "Fail";var estadoimg2 = "Fail";var estadoname = "Fail";
+		var testname = $(".form_brandname").val();
+		var testimg = $(".form_brandimage").val();
+		testsite = $(".form_brandsite").val();
+		var array_test_img = testimg.toString().split("");
+		var array_test_site = testsite.toString().split("");
+		//Comprobacion website
+		if (array_test_site[0] == "h" && array_test_site[1] == "t" && array_test_site[2] == "t" && array_test_site[3] == "p"){
+			estadoweb = "Good";
+		}
+		else if(array_test_site[0] == "w" && array_test_site[1] == "w" && array_test_site[2] == "w"){
+			testsite = "http://" + testsite;
+			estadoweb = "Good"
+		}
+		else{
+			estadoweb = "Failx"
+		}
+		//Comprobaciones image
+		if (array_test_img[0] == "h" && array_test_img[1] == "t" && array_test_img[2] == "t" && array_test_img[3] == "p"){
+			estadoimg = "Good"
+		}
+		else if(array_test_img[0] == "w" && array_test_img[1] == "w" && array_test_img[2] == "w"){
+			testimg = "http://" + testsite;
+			estadoimg = "Good"
+		}
+		else{
+			estadoimg = "Failx"
+		}
+		//Comprobacion imagen numero 2, formatos admitidos
+		var formato = array_test_img[array_test_img.length-4]+array_test_img[array_test_img.length-3]+array_test_img[array_test_img.length-2]+array_test_img[array_test_img.length-1];
+		if (formato == ".ico" || formato == ".jpg" || formato == ".png" || formato == ".svg" || formato == "jpeg"){
+			estadoimg2 = "Good"
+		}
+		else{
+			estadoimg2 = "Failx"
+		}
+		//No superar 16 caracteres en nombre
+		if(testname.length <= 20){
+			estadoname = "Good"
+		}
+		else{
+			estadoname = "Failx"
+		}
+		//Mensaje de informacion
+		if(estadoweb == "Good" && estadoimg == "Good" && estadoimg2 == "Good" && estadoname == "Good"){
+			if(testsite.length <= 0 || testname.length <= 0 || testimg.length <= 0){
+				$(".form_info").html(datostotales);
+			}
+			else{
+			$(".form_info").html(form_all_god);
+			$('.example_img').attr("src", testimg);
+			$('.example_name').html(testname);
+			$('#formtolook').animate({opacity: 0}, 1000, function(){
+				$('#wrappermain,#formtolook').css({display: 'none'});
+				$('#wrapper_sand_box').css({opacity: 0.25});
+				$('#wrapper_sand_box').css({display: 'block'});
+				$('#wrapper_sand_box').animate({opacity: 1}, 1000);
+			});
+				$('#header').css({opacity: 0});
+				$('#header').animate({height: 'toggle', opacity: 1}, 10000);
+			}
+		}
+		else{
+			if(estadoname == "Failx"){$(".form_info").html(form_name_failx);}
+			else if(estadoimg == "Failx"){$(".form_info").html(form_img_1_failx);}
+			else if(estadoimg2 == "Failx"){$(".form_info").html(form_img_2_failx);}
+			else if(estadoweb == "Failx"){$(".form_info").html(form_brandsite_failx);}
+			else{}
+		}
+	});
+	$('#itemexample').on("dblclick", function(){
+		window.open(testsite);
+	});
+	if ($(window).width() < 800) {
+		$('#itemexample').on("tap",function(){
+			window.open(testsite);
+		});
+	}
+
+})
+</script>
+</head>
+<body>
+
+<div id="wrappermain">
+	<div id="chooseleng">
+		<div id="english" class="divlengchoose"><img class="lengchoose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/125px-Flag_of_the_United_Kingdom.svg.png"></div>
+		<div id="spanish" class="divlengchoose"><img class="lengchoose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png"></div>
+		<div id="french" class="divlengchoose"><img class="lengchoose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/125px-Flag_of_France.svg.png"></div>
+		<div id="german" class="divlengchoose"><img class="lengchoose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png"></div>
+	</div>
+<!-- Form to look brand -->
+<style>
+.form_welcome_msg{font-family: 'Orbitron', sans-serif;color:orange;line-height: 48px;}
+.form_welcome_info{font-family: 'Orbitron', sans-serif;}
+.form_name,.form_img,.form_site{margin-right:10px;margin-top:-5px;display: inline-block;position:relative;top:-5px;}
+input[type="text"]{color:orange;background-color: #444;}
+input[type="text"]:focus{border:1px solid orange;
+box-shadow: inset 0 1px 1px rgba(255, 189, 25, 0.075), 0 0 8px rgba(255, 189, 25, 0.6);}
+.form_button{background-color:rgb(255, 189, 25);color:white;font-family: 'Ubuntu Condensed', sans-serif;border-radius: 5.5px 2px 5.5px 2px;display: inline-block;cursor:pointer;padding:7.5px;}
+.form_button:hover{background-color:darkorange;}.form_button:active{padding:10px;}
+@media screen and (max-width:800px){
+.form_welcome_msg,.form_welcome_info{font-size:0.8em;}
+}
+</style>
+	<div id="formtolook">
+		<h1 class="form_welcome_msg">Welcome to FiveOS, fill all correctly to see how would be your brand or web advertised on our website!</h1>
+		<h3 class="form_welcome_info">This data just is used to see how it will display in our web. The data doesn't storage anywhere, it just runs in your device.</h3>
+		<hr>
+		<div style="float:left;">
+		<p><span class="form_name">Brand name or web:</span><input type="text" class="form_brandname" tabindex="1" value="Grupo5Five"></p>
+		<p><span class="form_img">Brand logo or web:</span><input type="text" class="form_brandimage" tabindex="2" value="http://grupo5five.esy.es/images/favicon.png"></p>
+		<p><span class="form_site">Website link:</span><input type="text" class="form_brandsite" tabindex="3" value="http://grupo5five.esy.es/"></p>
+		<p id="test" class="form_button">Look!</p>
+		<p class="form_info"></p>
+		</div>
+		<div style="float:right;">
+			<div id="thum_english"><img id="thum_english_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/125px-Flag_of_the_United_Kingdom.svg.png"></div>
+			<div id="thum_spanish"><img id="thum_spanish_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png"></div>
+			<div id="thum_french"><img id="thum_french_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/125px-Flag_of_France.svg.png"></div>
+			<div id="thum_german"><img id="thum_german_img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png"></div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+</div>
+<div id="wrapper_sand_box">
+<style>
+#itemexample{
+	float:left;
+	width:80px;
+	margin-left:10px;
+	margin-top:10px;
+	cursor:pointer;
+	padding:3px;
+	border-radius:5px;
+	-webkit-transition: background 1s;
+	transition: background 1s;
+	z-index:999;
+}
+#itemexample:hover{background:rgba(255,161,0,0.7);}
+.example_img_2{text-align:center;}
+.example_img{width:32px;height:32px;}
+.example_name{color:white;word-wrap: break-word;text-align:center;font-family: 'Ubuntu Condensed', sans-serif;}
+</style>
+	<div id="header">
+		<p><span id="gotobuy">Like how it is, because you expect to buy and your icon?</span><a href="https://www.paypal.me/Grupo5Five/5" target="_blank"><button id="buttontobuy" type="button" class="btn btn-success">Purchase 5€/Month</button></a></p>
+	</div>
+	<div id="itemexample">
+		<div class="example_img_2"><img class="example_img" src="https://jqueryui.com/jquery-wp-content/themes/jqueryui.com/i/favicon.ico"></div>
+		<div style="clear:both;"></div>
+		<div class="example_name"></div>
+	</div>
+
+<a href="index.html"><div style="position:absolute;width:100%;bottom:0;text-align:center;"><img  src="i/p/fiveos.png"></div></a>
+</div>
+
+<script type="text/javascript">
+document.onselectstart = function() {return false;}
+</script>
+</body>
+</html>

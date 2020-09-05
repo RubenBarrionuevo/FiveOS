@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Box Color - FiveOS</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<link href="m.css" rel="stylesheet" type="text/css">
+<style>
+body{padding: 0;margin:0;background-color:rgba(0,0,0,1);color:rgba(255,255,255,1);}
+body *{padding:0;margin: 0;}
+#box-color{position: absolute;right: 20px;top:20px;height: 300px;width:200px;background:white;border:outset 3px darkgrey;border-radius:18px 5px;color:black;overflow: hidden;
+	background: -webkit-linear-gradient(white, #e0e0e0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #e0e0e0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #e0e0e0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #e0e0e0); /* Standard syntax */}
+#box-color .ordercolor{width: 100%;text-align: center;}
+#box-color .titlecolor{padding:10px;background-color: orange;width: auto;font-family: 'Orbitron', sans-serif;color:white;}
+#box-color .colorchildren{display:inline-block;width:26px;height: 26px;border:outset 2px darkgrey;border-radius:5px 2px;margin-left: 10px;margin-top:10px;cursor:pointer;}
+	#box-color .white,.whitef{background-color: white;}
+	#box-color .black,.blackf{background-color: black;}
+	#box-color .pink{background-color: pink;}
+	#box-color .red{background-color: red;}
+	#box-color .orange,.orangef{background-color: orange;}
+	#box-color .yellow,.yellowf{background-color: yellow;}
+	#box-color .purple{background-color: purple;}
+	#box-color .lime{background-color: lime;}
+.rbuttonfive{font-family: 'Ubuntu Condensed', sans-serif;color:white;background-color: orange;margin-left:10px;padding:3.5px 10px;font-size:18px;border-radius:5px 2px;cursor:pointer;}
+.rbuttonfive:hover{background-color: darkorange;}
+.rbuttonfive:active{color:darkorange;}
+/* Only SandBox */
+.pl,#pruebacolor{float:left;}
+.clear{clear:both;}
+</style>
+<script type="text/javascript">
+$(function(){
+	if(localStorage.backgroundrcolor){
+		//Lineas que cargan el tema de fondo
+		$('#sandbox1').css('background-color', localStorage.backgroundrcolor);
+    	$('#sandbox2').css('background-color', localStorage.backgroundrcolora);
+	}
+	if(localStorage.fontrcolor){
+		//Lineas que cargan el tema de fonts
+		$('body').css('color', localStorage.fontrcolor);
+	}
+	//Colores predefinidos
+	$(".white").on("click",function(){
+		localStorage.backgroundrcolor = "white"
+		localStorage.backgroundrcolora = "rgba(255,255,255,0.8)"
+	});
+	$(".black").on("click",function(){
+		localStorage.backgroundrcolor = "black"
+		localStorage.backgroundrcolora = "rgba(0,0,0,0.8)"
+	});
+	$(".pink").on("click",function(){
+		localStorage.backgroundrcolor = "pink"
+		localStorage.backgroundrcolora = "rgba(255, 192, 203,0.8)"
+	});
+	$(".red").on("click",function(){
+		localStorage.backgroundrcolor = "red"
+		localStorage.backgroundrcolora = "rgba(255,0,0,0.8)"
+	});
+	$(".orange").on("click",function(){
+		localStorage.backgroundrcolor = "orange"
+		localStorage.backgroundrcolora = "rgba(255,165,0,0.8)"
+	});
+	$(".yellow").on("click",function(){
+		localStorage.backgroundrcolor = "yellow"
+		localStorage.backgroundrcolora = "rgba(255,255,0,0.8)"
+	});
+	$(".purple").on("click",function(){
+		localStorage.backgroundrcolor = "purple"
+		localStorage.backgroundrcolora = "rgba(128,0,128,0.8)"
+	});
+	$(".lime").on("click",function(){
+		localStorage.backgroundrcolor = "lime"
+		localStorage.backgroundrcolora = "rgba(0,255,0,0.8)"
+	});
+	$(".whitef").on("click",function(){
+		localStorage.fontrcolor = "white"
+	});
+	$(".blackf").on("click",function(){
+		localStorage.fontrcolor = "black"
+	});
+	$(".orangef").on("click",function(){
+		localStorage.fontrcolor = "orange"
+	});
+	$(".yellowf").on("click",function(){
+		localStorage.fontrcolor = "yellow"
+	});
+	//Colores extras
+	$("#lookcolor").on("click",function(){
+		var colortheme = $("#colorbackchoose").val();
+		$("#pruebacolor").html(colortheme); //SandBox - Solo prueba el codigo de color introducido
+		hexToRgbback(colortheme);
+	});
+	$("#lookcolor2").on("click",function(){
+		var colortheme2 = $("#colorfontchoose").val();
+		$("#pruebacolor2").html(colortheme2); //SandBox - Solo prueba el codigo de color introducido
+		hexToRgbfont(colortheme2);
+	});
+//Hex to RGB
+function hexToRgbback(h)
+{
+    var r = parseInt((cutHex(h)).substring(0,2),16), g = parseInt((cutHex(h)).substring(2,4),16), b = parseInt((cutHex(h)).substring(4,6),16);
+    $("#pruebacolor2").html(r + " " + g + " " + b + " - Color fondo"); //SandBox
+    $("#pruebacolor3").html("rgb("+r+","+g+","+b+") - Color fondo"); //SandBox
+    localStorage.backgroundrcolor = "rgb("+r+","+g+","+b+")" //Save on localStore
+    localStorage.backgroundrcolora = "rgba("+r+","+g+","+b+",0.8)" //Save on localStore - Alpha Channel
+}
+function hexToRgbfont(h)
+{
+    var r = parseInt((cutHex(h)).substring(0,2),16), g = parseInt((cutHex(h)).substring(2,4),16), b = parseInt((cutHex(h)).substring(4,6),16);
+    $("#pruebacolor2").html(r + " " + g + " " + b + " - Color fondo"); //SandBox
+    $("#pruebacolor3").html("rgb("+r+","+g+","+b+") - Color fondo"); //SandBox
+    localStorage.fontrcolor = "rgb("+r+","+g+","+b+")" //Save on localStore
+}
+function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+//End
+// + SandBox
+	$("#sandboxtest").on("click", function(){
+		alert($("#pruebacolor2").html());
+		$('body').css('color', $("#pruebacolor3").html());
+		$('#pruebacolor4').html(localStorage.backgroundrcolor);
+		$('#pruebacolor5').html(localStorage.backgroundrcolora);
+		$('#sandbox1').css('background-color', localStorage.backgroundrcolor);
+    	$('#sandbox2').css('background-color', localStorage.backgroundrcolora);
+    	$('body').css('color', localStorage.fontrcolor);
+	});
+})
+</script>
+</head>
+<body>
+<!-- SandBox y control de Script -->
+<p>Proyecto Box-Color solo para el uso de FiveOS</p>
+<p class="pl">Color:</p><p id="pruebacolor">Null</p>
+<p class="clear"></p>
+<p id="pruebacolor2">Null</p>
+<p id="pruebacolor3">RGB</p>
+<p id="pruebacolor4">Storage Normal</p>
+<p id="pruebacolor5">Storage Alpha</p>
+<button id="sandboxtest">Testeo</button>
+<!-- SandBox Final -->
+<div id="sandbox1" style="height:100px;width:100px;color:white;background-color: orange;">Sin canal alpha</div>
+<div id="sandbox2" style="height:100px;width:100px;background-color:darkorange;color:white">Con canal alpha</div>
+
+<!-- Fin SandBoxing xd -->
+
+<div id="box-color">
+<ul style="list-style-type: none;">
+	<li class="ordercolor titlecolor">Background color</li>
+	<li class="ordercolor">
+	<div class="colorchildren white"></div>
+	<div class="colorchildren black"></div>
+	<div class="colorchildren pink"></div>
+	<div class="colorchildren red"></div>
+	</li>
+	<li class="ordercolor">
+	<div class="colorchildren orange"></div>
+	<div class="colorchildren yellow"></div>
+	<div class="colorchildren purple"></div>
+	<div class="colorchildren lime"></div>
+	</li>
+	<li>
+		<div style="text-align:center;margin-top:10px;margin-bottom:5px;"><input type="color" id="colorbackchoose"><span id="lookcolor" class="rbuttonfive">OK</span></div>
+	</li>
+	<li class="ordercolor titlecolor">Font color</li>
+	<li class="ordercolor">
+	<div class="colorchildren whitef"></div>
+	<div class="colorchildren blackf"></div>
+	<div class="colorchildren orangef"></div>
+	<div class="colorchildren yellowf"></div>
+	</li>
+	<li><div style="text-align:center;margin-top:10px;margin-bottom:5px;"><input type="color" id="colorfontchoose"><span id="lookcolor2" class="rbuttonfive">OK</span></div></li>
+</ul>
+</div>
+</body>
+</html>

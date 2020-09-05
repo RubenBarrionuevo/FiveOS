@@ -1,0 +1,4 @@
+// Diseños de estilo de FiveOS
+// Diseñado por Eloy Barrionuevo
+// Para uso exclusivo de FiveOS
+// Todos los derechos reservados®

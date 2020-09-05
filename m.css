@@ -1,0 +1,146 @@
+/* M.CSS By Ruben Barrionuevo */
+/* Inicio del proyecto: 22/04/2016 */
+/* @RubenStryker97 */
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+html,body{
+	height: 100%;
+	width:100%;
+	overflow: hidden;
+}
+body{
+	margin:0;
+	padding:0;
+	background-color:#333;
+	background-image: url(i/back.png);
+	background-repeat: repeat;
+	overflow: hidden;
+}
+body *{margin:0;padding:0;}
+#wrapper-icon-desktop{
+	height:100%;
+	width:100%;
+	z-index:997;
+	overflow: auto;
+}
+#transparent-wrapper{
+	background: url(i/p/fiveos.png) center 25vh no-repeat;
+	position: absolute;
+	top:0px;left:0px;
+	height: 100%;
+	width: 100%;
+	z-index:998;
+}
+#sandbox{height: 200px;width:200px;background-color:orange;color:white;float:right;z-index:1000;}
+/* Botones */
+.button5{background:orange;color:white;border-radius:3.5px 7px 3.5px 7px;display: inline-block;width: 70px;padding: 12.5px;text-align: center;}
+.button5:hover{cursor:pointer;background:rgb(252,195,25);}
+.button5:active{background:rgb(242,185,15);}
+/* Iconos */
+.icon,.icontrash{float:left;width:80px;margin-left:10px;margin-top:10px;cursor:pointer;padding:3px;border-radius:5px;z-index:999;
+	-webkit-transition: background 1s;
+	transition: background 1s;
+}
+.icontrash{
+	-webkit-transition: background 1s;
+	transition: background 1s;
+}
+.icontrash:hover .nameicontrash{color:white;}
+	.icon:hover,.icontrash:hover{background:rgba(255,161,0,0.7);}
+	.icontrash:hover{
+	-webkit-animation: jello 1s;
+    animation: jello 1s;
+    cursor:pointer;
+	}
+.imgicon{text-align:center;}
+.imgricon{width:32px;height: 32px;}
+.nameicon,.nameicontrash{color:orange;word-wrap: break-word;text-align:center;font-family: 'Ubuntu Condensed', sans-serif;}
+#imgmobile{display:none;}
+/* Papelera de reciclaje y configuracion de escritorio */
+#trash,#desktop-config{display:none;border:outset 3px darkgrey;border-radius:18px 5px;position: absolute;bottom: 30px;left:70px;width: 500px;height:330px;z-index:999;overflow: hidden;
+background: -webkit-linear-gradient(white, #e0e0e0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #e0e0e0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #e0e0e0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #e0e0e0); /* Standard syntax */}
+#trash-top,#desktop-top{background:orange;width:100%;height:50px;line-height: 50px;}
+#trash-top > p,#desktop-top > p{margin-left:15px;vertical-align:middle;font-family: 'Orbitron', sans-serif;}
+#trash-wrapper{width:100%;height:100%;}
+#desktop-config{width:525px;}
+#desktop-config input[type="text"]{border:1px solid orange;}
+#desktop-config input[type="text"]:focus{border-color:rgba(252,195,25,0.8);
+	-webkit-box-shadow:inset 0 1px 1px rgba(252,195,25,0.8), 0 0 8px rgba(252,195,25,0.8);
+	-moz-box-shadow:inset 0 1px 1px rgba(252,195,25,0.8), 0 0 8px rgba(252,195,25,0.8);
+	box-shadow:inset 0 1px 1px rgba(252,195,25,0.8), 0 0 8px rgba(252,195,25,0.8);}
+#desktop-previ-img{width:233px;height: 126px;background:red;
+	position:absolute;top:75px;left:25px;z-index:-3}
+/* MenuContextual - Bootstrap */
+.dropdown-menu{cursor:pointer;background-image: url(i/back3.png);}
+.dropdown-menu a{background-image: url(i/back3.png);}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a{background-color:orange;background-image: none;}
+/* BoxColor, GUI Style & Calculator */
+#box-color,#gui-style,#calculadora{display:none;position: absolute;right: 20px;top:20px;height: auto;width:200px;background:white;border:outset 3px darkgrey;border-radius:18px 5px;color:black;overflow: hidden;
+	background: -webkit-linear-gradient(white, #e0e0e0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #e0e0e0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #e0e0e0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #e0e0e0); /* Standard syntax */
+	z-index:1000;}
+#box-color .formateo-box,#gui-style .formateo-box{width: 100%;text-align: center;}
+#box-color .titlecolor,#gui-style .titlecolor{padding:10px;background-color: orange;width: auto;font-family: 'Orbitron', sans-serif;color:white;}
+#gui-style .viewsepa{cursor:pointer;}
+#gui-style .viewsepa:hover{background:#444;}
+#box-color .colorchildren{display:inline-block;width:26px;height: 26px;border:outset 2px darkgrey;border-radius:5px 2px;margin-left: 10px;margin-top:10px;cursor:pointer;}
+	#box-color .white,.whitef{background-color: white;}
+	#box-color .black,.blackf{background-color: black;}
+	#box-color .pink{background-color: pink;}
+	#box-color .red{background-color: red;}
+	#box-color .orange,.orangef{background-color: orange;}
+	#box-color .yellow,.yellowf{background-color: yellow;}
+	#box-color .purple{background-color: purple;}
+	#box-color .lime{background-color: lime;}
+/* Calculadora here */
+#calculadora{height:305px;}
+#calculadora .formateo-box{width: 100%;text-align: center;}
+#calculadora .titlecolor{padding:10px;background-color: orange;width: auto;font-family: 'Orbitron', sans-serif;color:white;}
+#calculadora #column-r-calculator1,#calculadora #column-r-calculator2,#calculadora #column-r-calculator3,#calculadora #column-r-calculator4{float:left;width:25%;height: 1000px;text-align: center;}
+#calculadora .boton{display:inline-block;color:white;background:orange;border-radius:1.5px 5px;width:80%;margin:10px 0px 0px 0px;padding:2px;cursor:pointer;}
+#calculadora .boton:hover{background:darkorange;}
+/* Close box */
+#close-calculator:hover,#close-guistyle:hover,#close-boxcolor:hover,#close-trash:hover,#close-desktopconf:hover{
+	-webkit-animation: swing 0.5s;
+    animation: swing 0.5s;
+    cursor:pointer;
+}
+/* Inputs */
+input[type="number"]{color:orange;background-color: white;}
+input[type="number"]:focus{border:1px solid orange;
+box-shadow: inset 0 1px 1px rgba(255, 189, 25, 0.075), 0 0 8px rgba(255, 189, 25, 0.6);}
+/* En Menu */
+.rbuttonfive{font-family: 'Ubuntu Condensed', sans-serif;color:white;background-color: orange;margin-left:10px;padding:3.5px 10px;font-size:18px;border-radius:5px 2px;cursor:pointer;}
+.rbuttonfive:hover{background-color: darkorange;}
+.rbuttonfive:active{color:darkorange;}
+#colorbackchoose,#colorfontchoose{width:44px;height:23px;padding:3px 6px;margin-bottom:5px;}
+.navexample{background-repeat: repeat-x;height: 42px;cursor:pointer;}
+/* MenuBar */
+.logomenu{background-image: url(i/p/Inicio.png);
+  -webkit-transition: background-image 0.5s;
+  -moz-transition: background-image 0.5s;
+  -o-transition: background-image 0.5s;}
+.logomenu:hover{background-image: url(i/p/InicioHover.png);}
+.logomenu:active{background-image: url(i/p/InicioActive.png);}
+#notificaciones{color:white;float:right;margin-top: 8px;margin-right: 5px;}
+#notificaciones a:link,a:visited{color:white;}
+#fecha{float:right;z-index:1000;color:white;text-align:center;margin-right:10px;margin-top:3px;font-family: Verdana;cursor: default;}
+.menu-margin{margin-top:7px;line-height: 100%;overflow: hidden;}
+.menu-margin > .separador{margin-top:3px;}
+/* Games */
+/* Proximamente */
+@media screen and (max-width: 800px) and (min-width: 10px){
+body{
+	padding:0;margin:0;
+	background-image: url(i/back.png);background-repeat: repeat;
+}
+#menu{display:none;}
+#sandbox{display:none;}
+#transparent-wrapper{background: transparent;}
+#imgmobile{display:block;text-align:center;width:100%;position: absolute;bottom:-20px;}
+}
